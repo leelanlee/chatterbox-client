@@ -5,25 +5,21 @@ var MessagesView = {
   //MessagesView.$chats.on('submit', MessagesView.handleSumbit)
 
   initialize: function() {
-    MessagesView.render();
+    //MessagesView.render();
   },
 
-  //handleSubmit: function(event) {
-  //event.preventDefault();
-  //need to render all messages in data.results array
-  //}
-
-  // updates the messages as more are added
   render: function() {
-    //iterate through the data.result array and pass each through the renderMessage to render to HTML format, prepend each to the body
-    //console.log('MessagesView.render ran')
-    //console.log('Messages', Messages.data)
     MessagesView.$chats.html('');
-    _.each(Messages.data, (message) => {
+
+    var filteredMess = _.filter(Messages.data, function(message) {
+      return message.roomname === Rooms.selected;
+    });
+    _.each(filteredMess, (message) => {
       if (message.username !== undefined) {
         MessagesView.renderMessage(message);
       }
     });
+    Messages.mostRecent = Messages.data.objectID;
   },
 
   renderMessage: function(message) {

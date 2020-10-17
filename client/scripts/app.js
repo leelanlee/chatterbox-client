@@ -12,19 +12,34 @@ var App = {
     MessagesView.initialize();
 
     // Fetch initial batch of messages
+    //
     App.startSpinner();
     App.fetch(App.stopSpinner);
+
+    setInterval(function() {
+      App.fetch();
+    }, 3000);
+
 
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+
       console.log(data);
+      Messages.data = data.results;
+      console.log(data.results);
+      MessagesView.render();
+      // RoomsView.render();
 
       callback();
     });
   },
+
+
+
+
 
   startSpinner: function() {
     App.$spinner.show();

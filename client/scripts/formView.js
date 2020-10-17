@@ -9,8 +9,30 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
+
+    //need to capture user input for message var to pass into parse.create function
+    var input = document.getElementById('message').value;
+    var message = {
+      username: App.username,
+      text: input,
+      roomname: undefined
+    };
+
+    //MessagesView.renderMessage(message);
+    //pass input into parse.create function
+    Parse.create(message, (data) => {
+      message.objectId = data.objectId;
+      message.createdAt = data.createdAt;
+      Messages.data.push(message);
+
+    });
+
+
+
     //need to invoke render message
-    console.log('click!');
+
+    // MessagesView.renderMessage()
+
   },
 
   setStatus: function(active) {

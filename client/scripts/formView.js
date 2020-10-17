@@ -15,7 +15,7 @@ var FormView = {
     var message = {
       username: App.username,
       text: input,
-      roomname: undefined
+      roomname: Rooms.selected
     };
 
     //MessagesView.renderMessage(message);

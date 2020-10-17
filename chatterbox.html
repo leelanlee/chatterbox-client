@@ -19,6 +19,7 @@
         search += 'username=' + (prompt('What is your name?') || 'anonymous');
         window.location.search = search;
       }
+
     </script>
   </head>
   <body>
@@ -28,7 +29,7 @@
       <div id="rooms">
         Room:
         <select></select>
-        <button>Add Room</button>
+        <button type="button" onclick="Rooms.add()">Add Room</button>
       </div>
       <form action="#" id="send" method="post">
         <input type="text" name="message" id="message"/>

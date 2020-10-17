@@ -10,6 +10,7 @@ var App = {
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
+    Friends.initialize();
 
     // Fetch initial batch of messages
     //
@@ -18,7 +19,7 @@ var App = {
 
     setInterval(function() {
       App.fetch();
-    }, 3000);
+    }, 6000);
 
 
   },
@@ -27,11 +28,10 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
 
-      console.log(data);
+
       Messages.data = data.results;
-      console.log(data.results);
       MessagesView.render();
-      // RoomsView.render();
+      RoomsView.render();
 
       callback();
     });
